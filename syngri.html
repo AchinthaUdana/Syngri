@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syngri | Next-Gen Digital Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --dark: #0F0F12;
+            --darker: #070709;
+            --light: #E0E0E0;
+            --gray: #8A8A8A;
+            --transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --glow: 0 0 15px rgba(108, 99, 255, 0.5);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        /* **Smooth Scroll** */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* **Navigation (Glowing Border Effect)** */
+        nav {
+            padding: 25px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            background-color: rgba(15, 15, 18, 0.9);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+        
+        nav:hover {
+            border-bottom: 1px solid var(--primary);
+            box-shadow: var(--glow);
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #6C63FF, #A463F2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #6C63FF, #A463F2);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .contact-btn {
+            background: linear-gradient(90deg, #6C63FF, #A463F2);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--glow);
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+        }
+        
+        /* **Hero Section (Animated Gradient & Floating Effect)** */
+        .hero {
+            min-height: 100vh;
+            padding: 180px 10% 100px;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(108, 99, 255, 0.1) 0%, rgba(15, 15, 18, 0) 70%);
+            animation: rotate 20s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .hero-content {
+            flex: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(90deg, #FFFFFF, #C0C0C0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: var(--gray);
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+        
+        .cta-btn {
+            background: linear-gradient(90deg, #6C63FF, #A463F2);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 6px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--glow);
+            font-size: 16px;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(108, 99, 255, 0.4);
+        }
+        
+        .hero-image {
+            flex: 1;
+            height: 500px;
+            background: url('https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(108, 99, 255, 0.2), rgba(164, 99, 242, 0.2));
+            z-index: 1;
+        }
+        
+        /* **Work Section (Hover 3D Tilt Effect)** */
+        .work {
+            padding: 120px 10%;
+            background-color: var(--darker);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-header h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #6C63FF, #A463F2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-header p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            perspective: 1000px;
+        }
+        
+        .work-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transform-style: preserve-3d;
+        }
+        
+        .work-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), var(--glow);
+            border: 1px solid rgba(108, 99, 255, 0.3);
+        }
+        
+        .work-img {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            transition: var(--transition);
+        }
+        
+        .work-card:hover .work-img {
+            transform: scale(1.05);
+        }
+        
+        .work-content {
+            padding: 25px;
+        }
+        
+        .work-content h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--light);
+        }
+        
+        .work-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .work-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        
+        .work-link:hover {
+            color: #A463F2;
+        }
+        
+        /* **Responsive Design** */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 150px;
+            }
+            
+            .hero p {
+                margin: 0 auto 30px;
+            }
+            
+            .hero-image {
+                width: 100%;
+                margin-top: 50px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 42px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- **Navigation (Glow Effect)** -->
+    <nav>
+        <div class="logo">syngri</div>
+        <div class="nav-links">
+            <a href="#">About Us</a>
+            <a href="#">Services</a>
+            <a href="#">Projects</a>
+            <a href="#">Contact</a>
+        </div>
+        <button class="contact-btn">Get in touch</button>
+    </nav>
+    
+    <!-- **Hero Section (Floating & Gradient Animation)** -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Transform your ideas into digital success with us!</h1>
+            <p>We're your partner in product design, website creation, and branding for every stage of your business.</p>
+            <button class="cta-btn">Get Started</button>
+        </div>
+        <div class="hero-image"></div>
+    </section>
+    
+    <!-- **Work Section (3D Tilt Effect on Hover)** -->
+    <section class="work">
+        <div class="section-header">
+            <h2>Our work</h2>
+            <p>Explore some of our recent projects and see how we've helped businesses like yours succeed digitally.</p>
+        </div>
+        <div class="work-grid">
+            <div class="work-card">
+                <div class="work-img" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+                <div class="work-content">
+                    <h3>E-commerce Platform</h3>
+                    <p>A complete online shopping solution with custom features and seamless user experience.</p>
+                    <a href="#" class="work-link">View project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="work-card">
+                <div class="work-img" style="background-image: url('https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+                <div class="work-content">
+                    <h3>Brand Identity</h3>
+                    <p>Complete branding package including logo, style guide, and marketing materials.</p>
+                    <a href="#" class="work-link">View project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="work-card">
+                <div class="work-img" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');"></div>
+                <div class="work-content">
+                    <h3>Mobile App</h3>
+                    <p>User-friendly mobile application with intuitive interface and powerful features.</p>
+                    <a href="#" class="work-link">View project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
